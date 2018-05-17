@@ -1,5 +1,5 @@
 # cnb
-Python lib using exchange rates from the Czech National Bank. Based on cnb-exchange-rate but focus is the work with current rate and historical daily rates (500 days).
+Python lib for currencies exchange rates downloaded from the Czech National Bank. Based on cnb-exchange-rate but focused to the work with current rate and historical daily rates (500 days).
 
 ## Status: Beta
 - 0.9.3 disk cached for service failure; new: rate_tuple/result_info returns additional item 'service failure'
@@ -44,20 +44,20 @@ cnb.monthly('HUF', 2015, 3)
 
 In fact this is fork of cnb-exchange-rate (stepansojka/cnb-exchange-rate, thx to Stepan Sojka),
 but not made as standard github fork, because of
-- change to the module (from package),
+- changed architecture from package to the simple module file,
 - file renames,
 - changed import mechanism
 
 Compare with cnb-exchange-rate:
-- Focus of this fork is the work with current rate and (short time) historical daily rates.
-- Basic method rate() (cnb-exchange-rate: daily_rate()) can be called without date to get current rate.
-- Not published dates include today and future dates are provided (if older one date exists).
+- This library has focus in the work with current rate and (short time) historical daily rates.
+- Basic method rate() (compare cnb-exchange-rate: daily_rate()) can be called without date to get current rate.
+- Dates not published from the cnb include today and future dates are provided (if older one date is provided).
 - Result of rate() is real rate (with regard to amount: 1,100,..).
 - Rates are cached for next use. Cache and file cache can help if CNB service is unavailable.
-- With valid_max_days parameter you can set which cache results are valid if service call has failed.
+- With valid_max_days parameter you can set which cache results are valid if service call will fail.
 - convert(), convert_to() methods are added for exchange calculations.
-- Bonus methods worse(), modified() for some dependend calculations
+- Bonus methods worse(), modified() for some dependend calculations.
 - Exceptions are not re-raised (and not handled). In addition raises ValueError if rate cannot be found.
-- Not focused methods from cnb-exchange-rate remains here, but probably there will be no development in the future.
-- But for methods which seek for average were added their clones which take regard to currency amount:
+- For methods which seek for average we have added their clones which take regard to currency amount:
             (monthly(), monthly_cumulative(), quarterly())
+- We have some other methods from cnb-exchange-rate here, but there will be no future development for them.
